@@ -1,0 +1,69 @@
+# 10 April 2020
+# WD: /home/jkimball/haasx092/reneth_gbs
+# Purpose of this code is to begin GBS analysis for Reneth
+
+# Data are located here:
+# /home/jkimball/data_release/umgc/nextseq/200302_NB551164_0221_AHLY3CBGXC/Kimball_Project_004
+
+# Load R
+module load R/3.6.0
+
+# Write file names to a text file
+ls /home/jkimball/data_release/umgc/nextseq/200302_NB551164_0221_AHLY3CBGXC/Kimball_Project_004/*fastq.gz  > 200410_reneth_gbs_sample_names_and_numbers.txt
+
+# For loop makes symlinks
+for i in $(cat 200410_reneth_gbs_sample_names_and_numbers.txt); do
+ln -s $i .
+done
+
+### Open R
+
+# Read in data using the data.table package
+library(data.table)
+fread("200410_reneth_gbs_sample_names_and_numbers.txt", header=F) -> x
+
+setnames(x, "filename")
+
+x[, sample_number := filename]
+# Strip off first part of filename until sample number begins (S) but do not include it.
+x[, sample_number := sub("^.+[S]", "", sample_number)]
+# Strip off end of the filename (after the sample number) ... begins with "_R1"
+x[, sample_number := sub("_[R1].+$", "", sample_number)]
+
+# Convert sample numbers to numerical and add leading zeros to all samples (to help with sorting).
+x[, sample_number := sprintf("%04d", as.numeric(sample_number))]
+
+# Reorder rows in ascending order
+x[order(sample_number)] -> x
+
+# Set column order (my personal preference for sample_number to come first)
+setcolorder(x, c("sample_number", "filename")) -> x
+
+# Write output to CSV
+write.csv(x, file="200410_reneth_GBS_sample_names_and_numbers.csv", row.names=FALSE, col.names=FALSE, sep=",", quote=FALSE)
+# This still wrote a header line to the CSV file. It needs to be removed for the directory setup to work properly
+
+### Go back to command line
+
+# Set up directory structure
+cat 200410_reneth_GBS_sample_names_and_numbers.csv | cut -f 1 -d , \
+	| while read i; do
+	d=Sample_$i
+	echo $i
+	mkdir -p $d
+	done
+
+# Delete directory that comes from sample_name (header) from the csv file
+rmdir Sample_sample_number
+
+# Matthew's GBS samples started at #1, but Reneth's samples started at # 125, so this was changed here to reflect that.
+# Otherwise, this code will unsuccessfully try to make symlinks for Samples 0001 through 0058--which of course don't exist.
+n=$(printf "%04d\n" "$((125))")
+cat 200410_reneth_GBS_sample_names_and_numbers.csv | cut -f 2 -d , \
+	| while read i; do
+	ln -s ${i} Sample_$n/Sample_${n}.fq.gz
+	n=$(printf "%04d\n" "$((10#$n+1))")
+	done
+
+# Check that the paths are accurate.
+ls -l Sample*/Sample*gz > paths_to_gbs_data_check.txt
