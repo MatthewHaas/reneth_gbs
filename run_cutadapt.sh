@@ -4,8 +4,12 @@
 #PBS -M haasx092@umn.edu
 #PBS -o run_cutadapt.out
 #PBS -e run_cutadapt.err
+#PBS -N run_cutadapt
+
 cd ~/reneth_gbs
+
 module load cutadapt
+
 for i in $(cat 200410_sample_list.txt); do
 cutadapt -b TCGCTGTCTCTTATACACATCT $i/${i}.fq.gz -o $i/${i}_trimmed.fq.gz 2> $i/${i}_cutadapt.err
 done
