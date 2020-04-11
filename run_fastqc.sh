@@ -12,5 +12,5 @@ module load fastqc
 
 # Run fastQC on trimmed reads
 for i in $(cat 200410_sample_list.txt); do
-fastqc $i/${i}_trimmed.fastq.gz;
+fastqc $i/${i}_trimmed.fq.gz;
 done
