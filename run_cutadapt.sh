@@ -1,11 +1,11 @@
 #!/bin/bash -1
-#PBS -l nodes=1:ppn=8,mem=15g,walltime=24:00:00
+#PBS -l nodes=1:ppn=8,mem=30g,walltime=24:00:00
 #PBS -m abe
 #PBS -M haasx092@umn.edu
 #PBS -o ~/reneth_gbs/run_cutadapt.out
 #PBS -e ~/reneth_gbs/run_cutadapt.err
 cd ~/reneth_GBS
 module load cutadapt
-for i in $(cat 200410_sample_list); do
+for i in $(cat 200410_sample_list.txt); do
 cutadapt -b TCGCTGTCTCTTATACACATCT $i/${i}_concatenated.fq.gz -o $i/${i}_trimmed.fq.gz 2> $i/${i}_cutadapt.err
 done
