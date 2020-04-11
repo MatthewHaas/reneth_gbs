@@ -11,7 +11,7 @@ module load samtools
 
 FASTA='/home/jkimball/mshao/genome_seq/zizania_palustris_13Nov2018_okGsv.fasta.gz'
 
-cd ~/main_GBS
+cd /home/jkimball/haasx092/reneth_gbs
 
 for i in $(cat 200410_sample_list.txt); do
 bwa mem $FASTA $i/${i}_trimmed.fq.gz 2> $i/${i}_bwa.err | samtools sort -o $i/${i}_sorted.bam 2> $i/${i}_samtools_sort.err;
