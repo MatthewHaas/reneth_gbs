@@ -12,6 +12,12 @@ This file contains the code used to setup the directory structure.
 ## index_bams.sh
 Shell script uses samtools index to index BAM files (needs to be done prior to SNP calling).
 
+## make_snp_table.sh
+Shell script to pull SNP calls out of VCF files and put into a tab-separated (TSV) file. Requires normalize.awk
+
+## normalize.awk
+AWK script required by **make_snp_table.sh** to pull SNP calls out of VCF files to make tab-separated (TSV) file.
+
 ## run_bwa.sh
 Shell script to run BWA-MEM to align fastq sequences to the _Zizania palustris_ genome.
 
