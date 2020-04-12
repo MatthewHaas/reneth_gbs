@@ -12,3 +12,6 @@ Shell script to run the program cutadapt to remove adapters from GBS sequences. 
 
 ## run_fastqc.sh
 Shell script to run the program fastQC to check the quality of GBS sequences.
+
+## scythe_mpileup.sh
+Shell script to run the SNP calling portion of GBS pipeline. Uses samtools mpileup and bcftools call functions.
