@@ -7,6 +7,7 @@ All files related to Reneth's first GBS project. After setting up the directory 
 5) **scythe_mpileup.sh** to do the SNP calling portion
 6) **make_snp_table.sh** & **normalize.awk** to create SNP table from VCF files
 7) **filter_with_vcftools.sh** to filter VCF files based on desired parameters
+8) **merge_vcf_files.sh** Merges filtered VCF files into one VCF file that will be used as input for PLINK
 
 ## filter_with_vcftools.sh
 Shell script uses VCFtools to filter VCF files (e.g., on % missing data, bi-allelic sites, depth).
@@ -19,6 +20,9 @@ Shell script uses samtools index to index BAM files (needs to be done prior to S
 
 ## make_snp_table.sh
 Shell script to pull SNP calls out of VCF files and put into a tab-separated (TSV) file. Requires normalize.awk
+
+## merge_vcf_files.sh
+Shell script that uses bcftools merge to combine the largest VCF files (filtered) into a single VCF file
 
 ## normalize.awk
 AWK script required by **make_snp_table.sh** to pull SNP calls out of VCF files to make tab-separated (TSV) file.
