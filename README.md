@@ -6,6 +6,10 @@ All files related to Reneth's first GBS project. After setting up the directory 
 4) **index_bams.sh** to index BAM files which needs to be done prior to SNP calling
 5) **scythe_mpileup.sh** to do the SNP calling portion
 6) **make_snp_table.sh** & **normalize.awk** to create SNP table from VCF files
+7) **filter_with_vcftools.sh** to filter VCF files based on desired parameters
+
+## filter_with_vcftools.sh
+Shell script uses VCFtools to filter VCF files (e.g., on % missing data, bi-allelic sites, depth).
 
 ## gbs_directory_setup.txt
 This file contains the code used to setup the directory structure.
