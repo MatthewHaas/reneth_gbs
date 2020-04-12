@@ -3,6 +3,7 @@
 #PBS -m abe
 #PBS -M haasx092@umn.edu
 #PBS -e scythe_mpileup.err
+#PBS -o scythe_mpileup.out
 #PBS -N scythe_mpileup
 
 cd /home/jkimball/haasx092/reneth_gbs
