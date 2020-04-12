@@ -8,6 +8,7 @@ All files related to Reneth's first GBS project. After setting up the directory 
 6) **make_snp_table.sh** & **normalize.awk** to create SNP table from VCF files
 7) **filter_with_vcftools.sh** to filter VCF files based on desired parameters
 8) **merge_vcf_files.sh** Merges filtered VCF files into one VCF file that will be used as input for PLINK
+9) **run_plink.sh** Puts VCF SNP data into PLINK format & calculates eigenvalue/eigenvector files for PCA
 
 ## filter_with_vcftools.sh
 Shell script uses VCFtools to filter VCF files (e.g., on % missing data, bi-allelic sites, depth).
@@ -35,6 +36,9 @@ Shell script to run the program cutadapt to remove adapters from GBS sequences. 
 
 ## run_fastqc.sh
 Shell script to run the program fastQC to check the quality of GBS sequences.
+
+## run_plink.sh
+Shell script to run PLINK to convert VCF SNP data into PLINK format and generate eigenvalue/eigenvector files to make PCA
 
 ## scythe_mpileup.sh
 Shell script to run the SNP calling portion of GBS pipeline. Uses samtools mpileup and bcftools call functions.
