@@ -10,6 +10,10 @@ All files related to Reneth's first GBS project. After setting up the directory 
 8) **merge_vcf_files.sh** Merges filtered VCF files into one VCF file that will be used as input for PLINK
 9) **run_plink.sh** Puts VCF SNP data into PLINK format & calculates eigenvalue/eigenvector files for PCA plot
 10) **run_reneth_pca.sh** & **reneth_pca.R** to generate PCA plot (in R) using eigenvalues/eigenvectors from PLINK
+11) **run_filter_snps.sh** & **filter_snps_and_make_wide_format.R** to generate SNP table with individuals (samples) as columns and rows as individual SNPs.
+
+## filter_snps_and_make_wide_format.R
+R script that reads in the tab-separated (TSV) file containing output of SNP calling pipeline (**make_snp_table.sh**). It performs further filtering based on read depth and base mapping quality, keeps only the scaffolds of interest (the main 16) and converts the SNP table from long format to wide format before writing the wide format table to a comma separated (CSV) file which can be opened and examined in Excel.
 
 ## filter_with_vcftools.sh
 Shell script uses VCFtools to filter VCF files (e.g., on % missing data, bi-allelic sites, depth).
@@ -40,6 +44,9 @@ Shell script to run the program cutadapt to remove adapters from GBS sequences. 
 
 ## run_fastqc.sh
 Shell script to run the program fastQC to check the quality of GBS sequences.
+
+## run_filter_snps.sh
+Shell script that launches the R script **filter_snps_and_make_wide_format.R** to create SNP table with individuals (samples_ as columns and SNPs as rows.
 
 ## run_plink.sh
 Shell script to run PLINK to convert VCF SNP data into PLINK format and generate eigenvalue/eigenvector files to make PCA.
