@@ -14,7 +14,7 @@ x[, sample := sub("/.+$", "", sample)]
 x[, scaffold := sub(";.+$", "", scaffold)]
 
 # Name scaffolds of interest
-scaffolds_of_interest = c("Scaffold_1", "Scaffold_3", "Scaffold_9", "Scaffold_13", "Scaffold_18", "Scaffold_48", "Scaffold_51", "Scaffold_70", "Scaffold_93", "Scaffold_415", "Scaffold_693", "Scaffold_1062", "Scaffold_1063", "Scaffold_1064", "Scaffold_1065")
+scaffolds_of_interest = c("Scaffold_1", "Scaffold_3", "Scaffold_7", "Scaffold_9", "Scaffold_13", "Scaffold_18", "Scaffold_48", "Scaffold_51", "Scaffold_70", "Scaffold_93", "Scaffold_415", "Scaffold_693", "Scaffold_1062", "Scaffold_1063", "Scaffold_1064", "Scaffold_1065")
 
 # Retain only scaffolds of interest
 x[scaffold %in% scaffolds_of_interest] -> y
